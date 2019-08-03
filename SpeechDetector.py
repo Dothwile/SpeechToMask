@@ -8,6 +8,7 @@ import audioop
 from collections import deque
 import time
 import math
+import gpiozero
 import TextHandler
 
 # Written by Sophie Li, 2016A
@@ -114,17 +115,17 @@ class SpeechDetector:
         audio2send = []
         cur_data = ''  # current chunk of audio data
         rel = self.RATE/self.CHUNK
-        slid_win = deque(maxlen=self.SILENCE_LIMIT * rel)
+        slid_win = deque(maxlen=int(self.SILENCE_LIMIT * rel)) # TODO int casting added to framework, may need to revert if not functional
         #Prepend audio from 0.5 seconds before noise was detected
-        prev_audio = deque(maxlen=self.PREV_AUDIO * rel)
+        prev_audio = deque(maxlen=int(self.PREV_AUDIO * rel))
         started = False
 
-        while True:
+        while True: # TODO Need to add gpio input toggle, don't forget to add a re-looping condition
             cur_data = stream.read(self.CHUNK)
             slid_win.append(math.sqrt(abs(audioop.avg(cur_data, 4))))
 
             if sum([x > self.THRESHOLD for x in slid_win]) > 0:
-                if started == False:
+                if not started:
                     print("Starting recording of phrase")
                     started = True
                 audio2send.append(cur_data)
@@ -139,8 +140,8 @@ class SpeechDetector:
                 os.remove(filename)
                 # Reset all
                 started = False
-                slid_win = deque(maxlen=self.SILENCE_LIMIT * rel)
-                prev_audio = deque(maxlen=0.5 * rel)
+                slid_win = deque(maxlen=int(self.SILENCE_LIMIT * rel))
+                prev_audio = deque(maxlen=int(0.5 * rel))
                 audio2send = []
                 print("Listening ...")
 
