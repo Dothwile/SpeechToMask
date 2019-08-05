@@ -1,5 +1,6 @@
 from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
+import Main
 
 import os
 import pyaudio
@@ -9,7 +10,6 @@ from collections import deque
 import time
 import math
 import gpiozero
-import TextHandler
 
 # Written by Sophie Li, 2016A
 
@@ -135,6 +135,10 @@ class SpeechDetector:
                 filename = self.save_speech(list(prev_audio) + audio2send, p)
                 r = self.decode_phrase(filename)
                 print("DETECTED: ", r)
+                # TODO pipe r to TextHandler
+
+                # Add decoded phrase to que
+                Main.word_que.extend(r)
 
                 # Removes temp audio file
                 os.remove(filename)
@@ -151,8 +155,3 @@ class SpeechDetector:
         print("* Done listening")
         stream.close()
         p.terminate()
-
-
-if __name__ == "__main__":
-    sd = SpeechDetector()
-    sd.run()
