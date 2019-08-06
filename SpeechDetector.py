@@ -9,7 +9,7 @@ import audioop
 from collections import deque
 import time
 import math
-import gpiozero
+# import gpiozero
 
 # Written by Sophie Li, 2016A
 
@@ -46,7 +46,7 @@ class SpeechDetector:
         config.set_string('-lm', os.path.join(MODELDIR, 'en-us/en-us.lm.bin'))
         config.set_string('-dict', os.path.join(MODELDIR,'en-us/cmudict-en-us.dict'))
 
-        # Creaders decoder object for streaming data.
+        # Creates decoder object for streaming data.
         self.decoder = Decoder(config)
 
     def setup_mic(self, num_samples=50):
