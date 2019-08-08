@@ -1,4 +1,3 @@
-import serial
 import time
 import Main
 # from collections import deque
@@ -9,20 +8,8 @@ class TextHandler:
     # Packages text from SpeechDetector and communicates it to Teensy LC, (arduino if you nasty)
 
     def __init__(self):
-        self.comm = serial.Serial("/dev/ttyACM0", 115200)
+        self.ALL_CAPS = False
 
-    def setup_comm(self):
-        # Set up serial comm with MCU
-        self.comm.open()
-        handshake = False
-        while not handshake:
-            # Serial write a connection message
-            self.comm.write('y')
-            time.sleep(.5)
-            # Serial Read for response
-            if self.comm.available() != 0 and self.comm.read() is 'y':
-                handshake = True
-        print('Connection established')
 
     def text_packer(self):
         # Packs text for display on mask
@@ -47,7 +34,9 @@ class TextHandler:
                 break
         full_write = (to_write_l1 + to_write_l2).ljust(14)
 
-        self.comm.write(full_write.encode())
+        # TODO, in airport, when have Stack Exchange find the elegant cast from String to Byte Array
+        for c in full_write:
+            Main.letter_que.append(c)
 
     def run(self):
         # Main run method
@@ -55,7 +44,7 @@ class TextHandler:
             if len(Main.word_que) != 0 and len(Main.word_que) <= 10:
                 self.text_packer()
                 time.sleep(1)
-            else:
+            elif len(Main.word_que) != 0:
                 for x in range(0, 9):
                     Main.word_que.pop(0)
 
