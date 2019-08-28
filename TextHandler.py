@@ -11,7 +11,6 @@ class TextHandler:
         self.ALL_CAPS = False
         self.L337 = False
 
-
     def text_packer(self):
         # Packs text for display on mask
         to_write_l1 = ""

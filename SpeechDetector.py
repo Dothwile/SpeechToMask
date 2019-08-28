@@ -10,6 +10,7 @@ from collections import deque
 import time
 import math
 
+
 # TODO Get John to marvel at this monstrosity
 
 # Written by Sophie Li, 2016A
@@ -20,16 +21,16 @@ class SpeechDetector:
 
     def __init__(self):
         # Microphone stream config.
-        self.CHUNK = 1024 # CHUNKS of bytes to read each time from mic
+        self.CHUNK = 1024  # CHUNKS of bytes to read each time from mic
         self.FORMAT = pyaudio.paInt16
         self.CHANNELS = 1
         self.RATE = 16000
 
-        self.SILENCE_LIMIT = 1 # Silence limit in seconds. The max ammount of seconds where
+        self.SILENCE_LIMIT = 1  # Silence limit in seconds. The max ammount of seconds where
         # only silence is recorded. When this time passes the
         # recording finishes and the file is decoded
 
-        self.PREV_AUDIO = 0.5 # Previous audio (in seconds) to prepend. When noise
+        self.PREV_AUDIO = 0.5  # Previous audio (in seconds) to prepend. When noise
         # is detected, how much of previously recorded audio is
         # prepended. This helps to prevent chopping the beginning
         # of the phrase.
@@ -38,14 +39,14 @@ class SpeechDetector:
         self.num_phrases = -1
 
         # TODO These will need to be modified according to where the pocketsphinx folder is
-        MODELDIR = “pocketsphinx/model”
-        DATADIR = “pocketsphinx/test/data”
+        MODELDIR = "pocketsphinx/model"
+        DATADIR = "pocketsphinx/test/data"
 
         # Create a decoder with certain model
         config = Decoder.default_config()
         config.set_string('-hmm', os.path.join(MODELDIR, 'en-us/en-us'))
         config.set_string('-lm', os.path.join(MODELDIR, 'en-us/en-us.lm.bin'))
-        config.set_string('-dict', os.path.join(MODELDIR,'en-us/cmudict-en-us.dict'))
+        config.set_string('-dict', os.path.join(MODELDIR, 'en-us/cmudict-en-us.dict'))
 
         # Creates decoder object for streaming data.
         self.decoder = Decoder(config)
@@ -53,13 +54,13 @@ class SpeechDetector:
     def setup_mic(self, num_samples=50):
         p = pyaudio.PyAudio()
         stream = p.open(format=self.FORMAT,
-        channels=self.CHANNELS,
-        rate=self.RATE,
-        input=True,
-        frames_per_buffer=self.CHUNK)
+                        channels=self.CHANNELS,
+                        rate=self.RATE,
+                        input=True,
+                        frames_per_buffer=self.CHUNK)
 
         values = [math.sqrt(abs(audioop.avg(stream.read(self.CHUNK), 4)))
-        for x in range(num_samples)]
+                  for x in range(num_samples)]
         values = sorted(values, reverse=True)
         r = sum(values[:int(num_samples * 0.2)]) / int(num_samples * 0.2)
         stream.close()
@@ -69,11 +70,12 @@ class SpeechDetector:
         else:
             self.THRESHOLD = r + 100
 
-    def save_speech(self, data, p):
+    @classmethod
+    def save_speech(cls, data, p):
         # Saves mic data to temporary WAV file. Returns filename of saved
         # file
 
-        filename = 'output_'+str(int(time.time()))
+        filename = 'output_' + str(int(time.time()))
         # writes data to WAV file
         data = ''.join(data)
         wf = wave.open(filename + '.wav', 'wb')
@@ -88,11 +90,11 @@ class SpeechDetector:
         self.decoder.start_utt()
         stream = open(wav_file, "rb")
         while True:
-          buf = stream.read(1024)
-          if buf:
-            self.decoder.process_raw(buf, False, False)
-          else:
-            break
+            buf = stream.read(1024)
+            if buf:
+                self.decoder.process_raw(buf, False, False)
+            else:
+                break
         self.decoder.end_utt()
         words = []
         [words.append(seg.word) for seg in self.decoder.seg()]
@@ -105,7 +107,7 @@ class SpeechDetector:
 
         self.setup_mic()
 
-        #Open stream
+        # Open stream
         p = pyaudio.PyAudio()
         stream = p.open(format=self.FORMAT,
                         channels=self.CHANNELS,
@@ -115,13 +117,14 @@ class SpeechDetector:
 
         audio2send = []
         cur_data = ''  # current chunk of audio data
-        rel = self.RATE/self.CHUNK
-        slid_win = deque(maxlen=int(self.SILENCE_LIMIT * rel)) # TODO int casting added to framework, may need to revert if not functional
-        #Prepend audio from 0.5 seconds before noise was detected
+        rel = self.RATE / self.CHUNK
+        slid_win = deque(maxlen=int(
+            self.SILENCE_LIMIT * rel))  # TODO int casting added to framework, may need to revert if not functional
+        # Prepend audio from 0.5 seconds before noise was detected
         prev_audio = deque(maxlen=int(self.PREV_AUDIO * rel))
         started = False
 
-        while True: # TODO Need to add gpio input toggle, don't forget to add a re-looping condition
+        while True:  # TODO Need to add gpio input toggle, don't forget to add a re-looping condition
             cur_data = stream.read(self.CHUNK)
             slid_win.append(math.sqrt(abs(audioop.avg(cur_data, 4))))
 

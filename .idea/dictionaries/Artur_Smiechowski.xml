@@ -4,6 +4,7 @@
       <w>datadir</w>
       <w>gpiozero</w>
       <w>modeldir</w>
+      <w>pocketsphinx</w>
     </words>
   </dictionary>
 </component>
