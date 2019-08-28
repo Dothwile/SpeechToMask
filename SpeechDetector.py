@@ -9,7 +9,8 @@ import audioop
 from collections import deque
 import time
 import math
-# import gpiozero
+
+# TODO Get John to marvel at this monstrosity
 
 # Written by Sophie Li, 2016A
 
@@ -152,6 +153,6 @@ class SpeechDetector:
             else:
                 prev_audio.append(cur_data)
 
-        print("* Done listening")
-        stream.close()
-        p.terminate()
+        # print("* Done listening")
+        # stream.close()
+        # p.terminate()

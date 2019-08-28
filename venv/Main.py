@@ -9,15 +9,10 @@ sd = SpeechDetector()
 th = TextHandler()
 gh = GPIO_Handler()
 
-word_que = deque()
+word_que = deque(maxlen=10)
 letter_que = deque()
 
 GPIO.setmode(GPIO.BOARD)
 
 if __name__ == "__main__":
-    p1 = Process(target=th.run())
-    p2 = Process(target=sd.run())
-    p3 = Thread(target=gh.run())
-    p1.start()
-    p2.start()
-    p3.start()
+    SpeechProcess = Process(target=sd.run())

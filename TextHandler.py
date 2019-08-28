@@ -9,6 +9,7 @@ class TextHandler:
 
     def __init__(self):
         self.ALL_CAPS = False
+        self.L337 = False
 
 
     def text_packer(self):
@@ -34,6 +35,18 @@ class TextHandler:
                 break
         full_write = (to_write_l1 + to_write_l2).ljust(14)
 
+        if self.ALL_CAPS:
+            full_write = full_write.upper()
+
+        if self.L337:
+            full_write = full_write.replace("S", "$")
+            full_write = full_write.replace("s", "$")
+            full_write = full_write.replace("T", "7")
+            full_write = full_write.replace("t", "7")
+            full_write = full_write.replace("A", "4")
+            full_write = full_write.replace("G", "6")
+            # Here I ask myself again... why?
+
         # TODO, in airport, when have Stack Exchange find the elegant cast from String to Byte Array
         for c in full_write:
             Main.letter_que.append(c)
@@ -41,10 +54,5 @@ class TextHandler:
     def run(self):
         # Main run method
         while True:
-            if len(Main.word_que) != 0 and len(Main.word_que) <= 10:
-                self.text_packer()
-                time.sleep(1)
-            elif len(Main.word_que) != 0:
-                for x in range(0, 9):
-                    Main.word_que.pop(0)
-
+            # Body
+            self.text_packer()
