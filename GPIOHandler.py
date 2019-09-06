@@ -1,22 +1,16 @@
-import Main
-import RPIO.GPIO as GPIO
-from switch import Switch
+# imports here
+from Cell import Cell
 
 
+class GPIOHandler():
 
-class GPIOHandler(object):
+    def __init__(self):
+        self.clock_pin = 0000 # TODO add actual clock pin number
+        self.cell_list = {Cell(0, 4), Cell(1, 17),Cell(2, 18), Cell(3, 27),Cell(4, 22), Cell(5, 23),
+                          Cell(6, 24), Cell(7, 25), Cell(8, 5), Cell(9, 6), Cell(10, 12), Cell(11, 13),
+                          Cell(12, 19), Cell(13, 16)}
 
-    def __init__(self, cell, datapin):
-        self.cell = cell
-        self.pin = datapin
-
-    # Oh no...
-
+    @staticmethod
     def run(self):
-        cur_let = Main.letter_que(self.cell)
-        # This is not going to fun...
-        with Switch(cur_let) as case:
-            case("E")
 
-
-
+        print("Gpio started")

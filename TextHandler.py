@@ -16,7 +16,7 @@ class TextHandler:
         to_write_l1 = ""
         to_write_l2 = ""
         while len(to_write_l1) <= 7:
-            cur_word = Main.word_que.pop(0)
+            cur_word = Main.word_que.pop()
             if len(cur_word) > 7 and len(to_write_l1) < 4:
                 to_write_l1 = to_write_l1 + cur_word[0:2].capitalize() + ". "
             elif len(cur_word) < (7 - len(to_write_l1)):
@@ -24,7 +24,7 @@ class TextHandler:
             else:
                 to_write_l2 = cur_word.capitalize()
         while len(to_write_l2) <= 7:
-            cur_word = Main.word_que.pop(0)
+            cur_word = Main.word_que.pop()
             if len(cur_word) > 7 and len(to_write_l2) < 4:
                 to_write_l2 = to_write_l2 + cur_word[0:2] + ". "
             elif len(cur_word) < (7 - len(to_write_l2)):
@@ -46,9 +46,7 @@ class TextHandler:
             full_write = full_write.replace("G", "6")
             # Here I ask myself again... why?
 
-        # TODO, in airport, when have Stack Exchange find the elegant cast from String to Byte Array
-        for c in full_write:
-            Main.letter_que.append(c)
+        Main.letter_que.extend(list(full_write))
 
     def run(self):
         # Main run method

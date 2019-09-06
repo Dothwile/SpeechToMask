@@ -19,6 +19,7 @@
           <option value="SpeechDetector.data" />
           <option value="SpeechDetector.sphinxbase" />
           <option value="pyaudio" />
+          <option value="Cell.RPIO" />
         </list>
       </option>
     </inspection_tool>
