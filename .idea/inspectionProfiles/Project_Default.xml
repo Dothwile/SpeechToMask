@@ -5,6 +5,7 @@
       <option name="ignoredErrors">
         <list>
           <option value="N806" />
+          <option value="N802" />
         </list>
       </option>
     </inspection_tool>
@@ -20,6 +21,7 @@
           <option value="SpeechDetector.sphinxbase" />
           <option value="pyaudio" />
           <option value="Cell.RPIO" />
+          <option value="GPIOHandler.*" />
         </list>
       </option>
     </inspection_tool>

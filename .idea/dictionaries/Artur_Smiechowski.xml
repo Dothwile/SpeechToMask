@@ -1,10 +1,13 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Artur Smiechowski">
     <words>
+      <w>clck</w>
       <w>datadir</w>
+      <w>gpio</w>
       <w>gpiozero</w>
       <w>modeldir</w>
       <w>pocketsphinx</w>
+      <w>rclk</w>
     </words>
   </dictionary>
 </component>
