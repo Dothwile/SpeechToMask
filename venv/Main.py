@@ -33,4 +33,4 @@ if __name__ == "__main__":
     SpeechProcess = Process(target=sd.run())
     # Text processing thread initialization
     TextThread = Thread(target=th.run())
-    GpioThread = Thread(target=gp.run())
+    GpioThread = Thread(target=GPIO_Handler.run())

@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c62a766-24e1-47a4-947e-3bc459c59086" name="Default Changelist" comment="Work in progress">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Artur_Smiechowski.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Artur_Smiechowski.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cell.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cell.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GPIOHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/GPIOHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TextHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextHandler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,11 +20,6 @@
         <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>dec</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">

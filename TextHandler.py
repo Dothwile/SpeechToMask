@@ -5,12 +5,10 @@ import Main
 
 class TextHandler:
 
-    # Packages text from SpeechDetector and communicates it to Teensy LC, (arduino if you nasty)
+    ALL_CAPS = False
+    L337 = False
 
-    def __init__(self):
-        self.ALL_CAPS = False
-        self.L337 = False
-
+    @staticmethod
     def text_packer(self):
         # Packs text for display on mask
         to_write_l1 = ""
@@ -34,10 +32,10 @@ class TextHandler:
                 break
         full_write = (to_write_l1 + to_write_l2).ljust(14)
 
-        if self.ALL_CAPS:
+        if TextHandler.ALL_CAPS:
             full_write = full_write.upper()
 
-        if self.L337:
+        if TextHandler.L337:
             full_write = full_write.replace("S", "$")
             full_write = full_write.replace("s", "$")
             full_write = full_write.replace("T", "7")
@@ -47,6 +45,10 @@ class TextHandler:
             # Here I ask myself again... why?
 
         Main.letter_que.extend(list(full_write))
+
+        # TODO add params for scroll
+        # for char in full_write:
+        #    Main.letter_que.appendleft()
 
     def run(self):
         # Main run method
