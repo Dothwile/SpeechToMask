@@ -6,12 +6,10 @@ from multiprocessing import Process
 from Threading import Thread
 from random import choice
 
-sd = SpeechDetector()
-th = TextHandler()
-gp = GPIO_Handler()
+sd =SpeechDetector()
 
 word_que = deque(maxlen=10)
-letter_que = deque(maxlen=70) # May tweak maxlen (cur assumes avg 7 let per word)
+letter_que = deque(maxlen=28) # May tweak maxlen (cur assumes avg 7 let per word)
 
 GPIO.setmode(GPIO.BOARD)
 
@@ -32,5 +30,5 @@ if __name__ == "__main__":
     # Speech processing given process for heavier workload
     SpeechProcess = Process(target=sd.run())
     # Text processing thread initialization
-    TextThread = Thread(target=th.run())
+    TextThread = Thread(target=TextHandler.run())
     GpioThread = Thread(target=GPIO_Handler.run())

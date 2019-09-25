@@ -8,8 +8,8 @@ class TextHandler:
     ALL_CAPS = False
     L337 = False
 
-    @staticmethod
-    def text_packer(self):
+    @classmethod
+    def text_packer(cls):
         # Packs text for display on mask
         to_write_l1 = ""
         to_write_l2 = ""
@@ -32,10 +32,10 @@ class TextHandler:
                 break
         full_write = (to_write_l1 + to_write_l2).ljust(14)
 
-        if TextHandler.ALL_CAPS:
+        if cls.ALL_CAPS:
             full_write = full_write.upper()
 
-        if TextHandler.L337:
+        if cls.L337:
             full_write = full_write.replace("S", "$")
             full_write = full_write.replace("s", "$")
             full_write = full_write.replace("T", "7")
@@ -50,8 +50,9 @@ class TextHandler:
         # for char in full_write:
         #    Main.letter_que.appendleft()
 
-    def run(self):
+    @classmethod
+    def run(cls):
         # Main run method
         while True:
             # Body
-            self.text_packer()
+            TextHandler.text_packer()

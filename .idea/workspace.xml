@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cell.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cell.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GPIOHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/GPIOHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpeechDetector.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpeechDetector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TextHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextHandler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Main.py" afterDir="false" />
     </list>

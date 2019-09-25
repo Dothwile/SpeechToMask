@@ -14,6 +14,8 @@ import math
 # TODO Get John to marvel at this monstrosity
 
 # Written by Sophie Li, 2016A
+# Serious props to Ms. Li, she saved me a lot of headaches
+# with this section of the code
 
 class SpeechDetector:
 
